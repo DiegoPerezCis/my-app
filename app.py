@@ -3,12 +3,11 @@ app_code = """import streamlit as st
 # 1. Configurar la página de Streamlit
 st.set_page_config(
     page_title="Asistente de Inteligencia Artificial para Negocios Locales",
-    page_icon="🏪",
     layout="centered"
 )
 
 # 2. Título principal y descripción
-st.title("🏪 Asistente IA para Negocios Locales")
+st.title("Asistente IA para Negocios Locales")
 st.write(
     "Bienvenido al asistente inteligente diseñado para ayudar a propietarios y encargados "
     "de pequeños comercios, restaurantes y cafeterías a organizar sus tareas diarias, "
