@@ -1,8 +1,4 @@
-"""Configuración de ImpulsaIA para development y production.
-
-Las credenciales se leen desde variables de entorno o Streamlit Secrets.
-Nunca guardes claves reales en este archivo.
-"""
+"""Configuración de ImpulsaIA para development y production."""
 from __future__ import annotations
 
 import os
@@ -31,9 +27,6 @@ def get_settings() -> dict[str, str]:
     1. Variable de entorno específica del ambiente.
     2. Tabla del ambiente en Streamlit Secrets.
     3. Valor predeterminado (solo para el modelo).
-
-    No hay fallback a una clave genérica: cada ambiente debe tener su
-    propia credencial para evitar compartirla accidentalmente.
     """
     environment = (
         os.getenv("APP_ENV")
