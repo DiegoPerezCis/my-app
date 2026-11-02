@@ -55,37 +55,131 @@ GOOGLE_SCOPES = [
 st.markdown("""
 <style>
 
-/* Fondo y texto general */
-.stApp {
-    background-color: #F5F7FB !important;
-    color: #172554 !important;
-}
+/* =========================================
+   FONDO Y TEXTO GENERAL
+========================================= */
 
-/* Área principal: forzar texto oscuro */
+.stApp,
+[data-testid="stAppViewContainer"],
 [data-testid="stMain"] {
     background-color: #F5F7FB !important;
     color: #172554 !important;
 }
 
-[data-testid="stMain"] p,
+/* Textos del panel principal */
 [data-testid="stMain"] h1,
 [data-testid="stMain"] h2,
 [data-testid="stMain"] h3,
 [data-testid="stMain"] h4,
+[data-testid="stMain"] p,
 [data-testid="stMain"] label,
-[data-testid="stMain"] span,
 [data-testid="stMain"] li,
-[data-testid="stMain"] strong,
-[data-testid="stMain"] .stMarkdown {
+[data-testid="stMain"] strong {
     color: #172554 !important;
 }
 
-/* Texto dentro de los contenedores */
-[data-testid="stMain"] [data-testid="stMarkdownContainer"] * {
+/* =========================================
+   BARRA LATERAL
+========================================= */
+
+[data-testid="stSidebar"] {
+    background-color: #172554 !important;
+}
+
+[data-testid="stSidebar"] * {
+    color: #FFFFFF !important;
+}
+
+/* =========================================
+   BOTONES
+========================================= */
+
+[data-testid="stMain"] .stButton > button,
+[data-testid="stMain"] .stLinkButton > a,
+[data-testid="stMain"] .stDownloadButton > button {
+    background-color: #1D4ED8 !important;
+    color: #FFFFFF !important;
+    border: 1px solid #1D4ED8 !important;
+    border-radius: 9px !important;
+    font-weight: 600 !important;
+}
+
+/* Asegurar que el texto interno también sea blanco */
+[data-testid="stMain"] .stButton > button *,
+[data-testid="stMain"] .stLinkButton > a *,
+[data-testid="stMain"] .stDownloadButton > button * {
+    color: #FFFFFF !important;
+}
+
+/* Estado al pasar el cursor */
+[data-testid="stMain"] .stButton > button:hover,
+[data-testid="stMain"] .stLinkButton > a:hover,
+[data-testid="stMain"] .stDownloadButton > button:hover {
+    background-color: #1E40AF !important;
+    color: #FFFFFF !important;
+    border-color: #1E40AF !important;
+}
+
+/* =========================================
+   CAJAS DE TEXTO
+========================================= */
+
+[data-testid="stMain"] input,
+[data-testid="stMain"] textarea,
+[data-testid="stMain"] [data-baseweb="input"],
+[data-testid="stMain"] [data-baseweb="textarea"] {
+    background-color: #FFFFFF !important;
+    color: #172554 !important;
+    -webkit-text-fill-color: #172554 !important;
+    border-color: #CBD5E1 !important;
+}
+
+/* Elementos internos de los campos */
+[data-testid="stMain"] [data-baseweb="input"] input,
+[data-testid="stMain"] [data-baseweb="textarea"] textarea {
+    background-color: #FFFFFF !important;
+    color: #172554 !important;
+    -webkit-text-fill-color: #172554 !important;
+    caret-color: #172554 !important;
+}
+
+/* Texto de ejemplo o placeholder */
+[data-testid="stMain"] input::placeholder,
+[data-testid="stMain"] textarea::placeholder {
+    color: #94A3B8 !important;
+    -webkit-text-fill-color: #94A3B8 !important;
+    opacity: 1 !important;
+}
+
+/* =========================================
+   LISTAS DESPLEGABLES Y SELECTORES
+========================================= */
+
+[data-testid="stMain"] [data-baseweb="select"] > div {
+    background-color: #FFFFFF !important;
+    color: #172554 !important;
+    border-color: #CBD5E1 !important;
+}
+
+[data-testid="stMain"] [data-baseweb="select"] * {
     color: #172554 !important;
 }
 
-/* Tarjetas informativas */
+/* Opciones de los desplegables */
+[data-baseweb="popover"],
+[data-baseweb="menu"] {
+    background-color: #FFFFFF !important;
+}
+
+[data-baseweb="menu"] *,
+[data-baseweb="popover"] * {
+    color: #172554 !important;
+}
+
+/* =========================================
+   TARJETAS Y CONTENEDORES
+========================================= */
+
 .info-card {
     background-color: #FFFFFF !important;
     padding: 22px;
@@ -107,44 +201,31 @@ st.markdown("""
     margin: 0;
 }
 
-/* Contenedores con borde */
 [data-testid="stMain"] [data-testid="stVerticalBlockBorderWrapper"] {
     background-color: #FFFFFF !important;
     border-color: #E2E8F0 !important;
-    border-radius: 14px;
+    border-radius: 14px !important;
 }
 
-/* Botones */
-div.stButton > button {
-    border-radius: 9px;
-    font-weight: 600;
-}
+/* =========================================
+   TEXTOS SECUNDARIOS
+========================================= */
 
-/* Barra lateral */
-[data-testid="stSidebar"] {
-    background-color: #172554 !important;
-}
-
-[data-testid="stSidebar"] * {
-    color: #FFFFFF !important;
-}
-
-/* Campos de entrada */
-[data-testid="stMain"] input,
-[data-testid="stMain"] textarea,
-[data-testid="stMain"] [data-baseweb="select"] {
-    color: #172554 !important;
-}
-
-/* Texto secundario */
-[data-testid="stMain"] .stCaption,
-[data-testid="stMain"] small {
+[data-testid="stMain"] small,
+[data-testid="stMain"] .stCaption {
     color: #64748B !important;
+}
+
+/* =========================================
+   CASILLAS Y CONTROLES
+========================================= */
+
+[data-testid="stMain"] input[type="checkbox"] {
+    accent-color: #1D4ED8;
 }
 
 </style>
 """, unsafe_allow_html=True)
-
 
 
 # ============================================================
