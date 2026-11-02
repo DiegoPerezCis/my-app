@@ -54,69 +54,97 @@ GOOGLE_SCOPES = [
 
 st.markdown("""
 <style>
-    .stApp {
-        background-color: #F5F7FB;
-    }
 
-    [data-testid="stSidebar"] {
-        background-color: #172554;
-    }
+/* Fondo y texto general */
+.stApp {
+    background-color: #F5F7FB !important;
+    color: #172554 !important;
+}
 
-    [data-testid="stSidebar"] * {
-        color: white;
-    }
+/* Área principal: forzar texto oscuro */
+[data-testid="stMain"] {
+    background-color: #F5F7FB !important;
+    color: #172554 !important;
+}
 
-    [data-testid="stSidebar"] .stRadio label {
-        color: white !important;
-    }
+[data-testid="stMain"] p,
+[data-testid="stMain"] h1,
+[data-testid="stMain"] h2,
+[data-testid="stMain"] h3,
+[data-testid="stMain"] h4,
+[data-testid="stMain"] label,
+[data-testid="stMain"] span,
+[data-testid="stMain"] li,
+[data-testid="stMain"] strong,
+[data-testid="stMain"] .stMarkdown {
+    color: #172554 !important;
+}
 
-    .main-title {
-        font-size: 2rem;
-        font-weight: 750;
-        color: #172554;
-        margin-bottom: 0.2rem;
-    }
+/* Texto dentro de los contenedores */
+[data-testid="stMain"] [data-testid="stMarkdownContainer"] * {
+    color: #172554 !important;
+}
 
-    .subtitle {
-        color: #64748B;
-        font-size: 1rem;
-        margin-bottom: 1.5rem;
-    }
+/* Tarjetas informativas */
+.info-card {
+    background-color: #FFFFFF !important;
+    padding: 22px;
+    border-radius: 14px;
+    border: 1px solid #E2E8F0;
+    min-height: 120px;
+}
 
-    .info-card {
-        background: white;
-        padding: 22px;
-        border-radius: 14px;
-        border: 1px solid #E2E8F0;
-        min-height: 120px;
-    }
+.info-card h3 {
+    color: #64748B !important;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
 
-    .info-card h3 {
-        color: #64748B;
-        font-size: 0.9rem;
-        margin-bottom: 8px;
-    }
+.info-card p {
+    color: #172554 !important;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
 
-    .info-card p {
-        color: #172554;
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin: 0;
-    }
+/* Contenedores con borde */
+[data-testid="stMain"] [data-testid="stVerticalBlockBorderWrapper"] {
+    background-color: #FFFFFF !important;
+    border-color: #E2E8F0 !important;
+    border-radius: 14px;
+}
 
-    div.stButton > button {
-        border-radius: 9px;
-        font-weight: 600;
-    }
+/* Botones */
+div.stButton > button {
+    border-radius: 9px;
+    font-weight: 600;
+}
 
-    div[data-testid="stForm"] {
-        background-color: white;
-        padding: 20px;
-        border-radius: 12px;
-        border: 1px solid #E2E8F0;
-    }
+/* Barra lateral */
+[data-testid="stSidebar"] {
+    background-color: #172554 !important;
+}
+
+[data-testid="stSidebar"] * {
+    color: #FFFFFF !important;
+}
+
+/* Campos de entrada */
+[data-testid="stMain"] input,
+[data-testid="stMain"] textarea,
+[data-testid="stMain"] [data-baseweb="select"] {
+    color: #172554 !important;
+}
+
+/* Texto secundario */
+[data-testid="stMain"] .stCaption,
+[data-testid="stMain"] small {
+    color: #64748B !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
+
 
 
 # ============================================================
