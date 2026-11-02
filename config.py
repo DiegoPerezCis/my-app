@@ -1,0 +1,84 @@
+"""Configuración de ImpulsaIA para development y production.
+
+Las credenciales se leen desde variables de entorno o Streamlit Secrets.
+Nunca guardes claves reales en este archivo.
+"""
+from __future__ import annotations
+
+import os
+from typing import Any
+
+import streamlit as st
+
+
+DEFAULT_MODEL = "gemini-2.5-flash"
+VALID_ENVIRONMENTS = {"development", "production"}
+
+
+def _read_secret(key: str, default: Any = None) -> Any:
+    """Lee un secreto de Streamlit sin interrumpir la ejecución si no existe."""
+    try:
+        return st.secrets.get(key, default)
+    except Exception:
+        # Fuera de Streamlit o cuando no hay archivo de secrets configurado.
+        return default
+
+
+def get_settings() -> dict[str, str]:
+    """Devuelve la configuración del ambiente activo.
+
+    Prioridad para cada valor:
+    1. Variable de entorno específica del ambiente.
+    2. Tabla del ambiente en Streamlit Secrets.
+    3. Valor predeterminado (solo para el modelo).
+
+    No hay fallback a una clave genérica: cada ambiente debe tener su
+    propia credencial para evitar compartirla accidentalmente.
+    """
+    environment = (
+        os.getenv("APP_ENV")
+        or _read_secret("APP_ENV", "development")
+    ).strip().lower()
+
+    if environment not in VALID_ENVIRONMENTS:
+        raise ValueError(
+            "APP_ENV debe ser 'development' o 'production'."
+        )
+
+    environment_secrets = _read_secret(environment, {})
+    if not hasattr(environment_secrets, "get"):
+        environment_secrets = {}
+
+    api_key = (
+        os.getenv(f"GEMINI_API_KEY_{environment.upper()}")
+        or environment_secrets.get("GEMINI_API_KEY")
+        or ""
+    )
+
+    model = (
+        os.getenv(f"GEMINI_MODEL_{environment.upper()}")
+        or environment_secrets.get("GEMINI_MODEL")
+        or os.getenv("GEMINI_MODEL")
+        or _read_secret("GEMINI_MODEL", DEFAULT_MODEL)
+    )
+
+    return {
+        "environment": environment,
+        "gemini_api_key": str(api_key).strip(),
+        "gemini_model": str(model).strip() or DEFAULT_MODEL,
+    }
+
+
+def create_gemini_client():
+    """Crea el cliente Gemini o genera un error claro si falta la clave."""
+    from google import genai
+
+    settings = get_settings()
+    if not settings["gemini_api_key"]:
+        raise RuntimeError(
+            "No se encontró la clave de Gemini para el ambiente "
+            f"'{settings['environment']}'. Configúrala en Streamlit Secrets "
+            "o mediante una variable de entorno."
+        )
+
+    return genai.Client(api_key=settings["gemini_api_key"])
