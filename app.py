@@ -251,22 +251,76 @@ if "appointment_result" not in st.session_state:
 # ============================================================
 # 4. CONFIGURACIÓN Y CONEXIÓN CON GEMINI
 # ============================================================
-
 def generate_gemini_response(prompt: str) -> str:
-    """Envía una solicitud a Gemini y devuelve el texto generado."""
+    """Envía una solicitud a Gemini con reintentos ante errores temporales."""
+
+    import time
 
     client = create_gemini_client()
     settings = get_settings()
 
-    response = client.models.generate_content(
-        model=settings["gemini_model"],
-        contents=prompt
-    )
+    primary_model = settings["gemini_model"]
+    fallback_model = settings.get("gemini_fallback_model")
 
-    if not response.text:
-        raise RuntimeError("Gemini no devolvió una respuesta.")
+    def generate_with_retry(model: str) -> str:
+        last_error = None
 
-    return response.text.strip()
+        for attempt in range(3):
+            try:
+                response = client.models.generate_content(
+                    model=model,
+                    contents=prompt
+                )
+
+                if not response.text:
+                    raise RuntimeError(
+                        "Gemini no devolvió una respuesta."
+                    )
+
+                return response.text.strip()
+
+            except Exception as exc:
+                last_error = exc
+
+                error_code = getattr(exc, "code", None)
+                error_message = str(exc).lower()
+
+                temporary_error = (
+                    error_code in (429, 500, 502, 503, 504)
+                    or any(code in error_message for code in (
+                        "429", "500", "502", "503", "504",
+                        "unavailable", "resource_exhausted",
+                        "high demand", "deadline exceeded"
+                    ))
+                )
+
+                if not temporary_error:
+                    raise
+
+                if attempt < 2:
+                    time.sleep(2 ** (attempt + 1))
+
+        raise last_error
+
+    try:
+        return generate_with_retry(primary_model)
+
+    except Exception as primary_error:
+
+        if fallback_model and fallback_model != primary_model:
+            try:
+                return generate_with_retry(fallback_model)
+            except Exception as fallback_error:
+                raise RuntimeError(
+                    "Gemini no está disponible temporalmente. "
+                    "Intenta nuevamente más tarde."
+                ) from fallback_error
+
+        raise RuntimeError(
+            "Gemini no está disponible temporalmente. "
+            "Intenta nuevamente más tarde."
+        ) from primary_error
+
 
 
 def extract_json(text: str):
