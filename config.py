@@ -55,12 +55,12 @@ def get_settings() -> dict[str, str]:
         or _read_secret("GEMINI_MODEL", DEFAULT_MODEL)
     )
 
-    return {
+        return {
         "environment": environment,
         "gemini_api_key": str(api_key).strip(),
         "gemini_model": str(model).strip() or DEFAULT_MODEL,
+        "gemini_fallback_model": "gemini-3.5-flash-lite",
     }
-
 
 def create_gemini_client():
     """Crea el cliente Gemini o genera un error claro si falta la clave."""
