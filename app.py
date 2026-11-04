@@ -18,10 +18,7 @@ import streamlit as st
 
 from config import get_settings, create_gemini_client
 
-
-# ============================================================
 # 1. CONFIGURACIÓN GENERAL
-# ============================================================
 
 st.set_page_config(
     page_title="ImpulsaIA",
@@ -47,17 +44,12 @@ GOOGLE_SCOPES = [
     "https://www.googleapis.com/auth/gmail.send",
 ]
 
-
-# ============================================================
 # 2. ESTILOS
-# ============================================================
 
 st.markdown("""
 <style>
 
-/* =========================================
-   FONDO Y TEXTO GENERAL
-========================================= */
+/*   FONDO Y TEXTO GENERAL*/
 
 .stApp,
 [data-testid="stAppViewContainer"],
@@ -78,9 +70,7 @@ st.markdown("""
     color: #172554 !important;
 }
 
-/* =========================================
-   BARRA LATERAL
-========================================= */
+/*    BARRA LATERAL */
 
 [data-testid="stSidebar"] {
     background-color: #172554 !important;
@@ -90,9 +80,7 @@ st.markdown("""
     color: #FFFFFF !important;
 }
 
-/* =========================================
-   BOTONES
-========================================= */
+/*    BOTONES */
 
 [data-testid="stMain"] .stButton > button,
 [data-testid="stMain"] .stLinkButton > a,
@@ -120,9 +108,7 @@ st.markdown("""
     border-color: #1E40AF !important;
 }
 
-/* =========================================
-   CAJAS DE TEXTO
-========================================= */
+/*    CAJAS DE TEXTO */
 
 [data-testid="stMain"] input,
 [data-testid="stMain"] textarea,
@@ -151,9 +137,7 @@ st.markdown("""
     opacity: 1 !important;
 }
 
-/* =========================================
-   LISTAS DESPLEGABLES Y SELECTORES
-========================================= */
+/*    LISTAS DESPLEGABLES Y SELECTORES */
 
 [data-testid="stMain"] [data-baseweb="select"] > div {
     background-color: #FFFFFF !important;
@@ -176,9 +160,7 @@ st.markdown("""
     color: #172554 !important;
 }
 
-/* =========================================
-   TARJETAS Y CONTENEDORES
-========================================= */
+/*    TARJETAS Y CONTENEDORES */
 
 .info-card {
     background-color: #FFFFFF !important;
@@ -207,18 +189,14 @@ st.markdown("""
     border-radius: 14px !important;
 }
 
-/* =========================================
-   TEXTOS SECUNDARIOS
-========================================= */
+/*    TEXTOS SECUNDARIOS */
 
 [data-testid="stMain"] small,
 [data-testid="stMain"] .stCaption {
     color: #64748B !important;
 }
 
-/* =========================================
-   CASILLAS Y CONTROLES
-========================================= */
+/*    CASILLAS Y CONTROLES */
 
 [data-testid="stMain"] input[type="checkbox"] {
     accent-color: #1D4ED8;
@@ -227,10 +205,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-
-# ============================================================
 # 3. ESTADO DE LA APLICACIÓN
-# ============================================================
 
 if "page" not in st.session_state:
     st.session_state.page = "Panel principal"
@@ -247,10 +222,7 @@ if "message_result" not in st.session_state:
 if "appointment_result" not in st.session_state:
     st.session_state.appointment_result = None
 
-
-# ============================================================
 # 4. CONFIGURACIÓN Y CONEXIÓN CON GEMINI
-# ============================================================
 def generate_gemini_response(prompt: str) -> str:
     """Envía una solicitud a Gemini con reintentos ante errores temporales."""
 
@@ -258,7 +230,6 @@ def generate_gemini_response(prompt: str) -> str:
 
     client = create_gemini_client()
     settings = get_settings()
-
     primary_model = settings["gemini_model"]
     fallback_model = settings.get("gemini_fallback_model")
 
@@ -339,9 +310,7 @@ def extract_json(text: str):
         raise ValueError("No se pudo interpretar la respuesta de Gemini.")
 
 
-# ============================================================
 # 5. CONFIGURACIÓN OAUTH DE GOOGLE
-# ============================================================
 
 def get_google_oauth_settings():
     """Lee las credenciales OAuth desde Streamlit Secrets."""
@@ -548,10 +517,7 @@ def get_google_access_token():
 # Procesar retorno de Google antes de dibujar la interfaz.
 process_google_callback()
 
-
-# ============================================================
 # 6. GOOGLE CALENDAR
-# ============================================================
 
 def create_calendar_event(
     title: str,
@@ -608,10 +574,7 @@ def create_calendar_event(
 
     return response.json()
 
-
-# ============================================================
 # 7. GMAIL
-# ============================================================
 
 def send_gmail_message(
     recipient: str,
@@ -645,9 +608,7 @@ def send_gmail_message(
     return response.json()
 
 
-# ============================================================
 # 8. BARRA LATERAL Y ROLES DEMOSTRATIVOS
-# ============================================================
 
 with st.sidebar:
 
@@ -708,9 +669,7 @@ with st.sidebar:
     st.caption("ImpulsaIA · Versión inicial")
 
 
-# ============================================================
 # 9. ENCABEZADO GENERAL
-# ============================================================
 
 def page_header(title: str, description: str):
     st.markdown(
@@ -723,9 +682,7 @@ def page_header(title: str, description: str):
     )
 
 
-# ============================================================
 # 10. PANEL PRINCIPAL
-# ============================================================
 
 if st.session_state.page == "Panel principal":
 
@@ -843,9 +800,7 @@ if st.session_state.page == "Panel principal":
     )
 
 
-# ============================================================
 # 11. TAREAS Y PRIORIDADES
-# ============================================================
 
 elif st.session_state.page == "Tareas y prioridades":
 
@@ -968,9 +923,7 @@ Devuelve exclusivamente un JSON con esta estructura:
             st.warning("Gemini no devolvió tareas estructuradas.")
 
 
-# ============================================================
 # 12. MENSAJES PARA CLIENTES Y PROVEEDORES
-# ============================================================
 
 elif st.session_state.page == "Mensajes":
 
@@ -1076,10 +1029,7 @@ Instrucciones:
             use_container_width=True
         )
 
-
-# ============================================================
 # 13. CITAS Y RECORDATORIOS
-# ============================================================
 
 elif st.session_state.page == "Citas y recordatorios":
 
@@ -1320,9 +1270,7 @@ ImpulsaIA
             )
 
 
-# ============================================================
 # 14. USUARIOS Y ACCESOS — DEMOSTRACIÓN VISUAL
-# ============================================================
 
 elif st.session_state.page == "Usuarios y accesos":
 
@@ -1395,9 +1343,7 @@ elif st.session_state.page == "Usuarios y accesos":
                 st.write(f"✓ {permission}")
 
 
-# ============================================================
 # 15. PIE DE PÁGINA
-# ============================================================
 
 st.divider()
 
