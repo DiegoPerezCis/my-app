@@ -23,35 +23,54 @@ La aplicación contempla tres funcionalidades:
 3) Citas y recordatorios: interpreta los detalles proporcionados y devuelve la información estructurada y un texto de recordatorio.
 
 Inteligencia artificial
-Se utilizará la API de Gemini mediante el SDK oficial `google-genai`.
-Se elige un modelo generativo porque las tres funciones requieren comprender texto en lenguaje natural y producir respuestas adaptadas al contexto: ordenar tareas, redactar mensajes y extraer/organizar datos de citas.
-La disponibilidad de modelos, cuotas y modalidad gratuita depende de las condiciones vigentes de Google AI Studio / Gemini API; no se garantiza una cuota gratuita permanente.
+
+Se utiliza la API de Gemini mediante `google-genai`. Esto a debido que las tres funciones requieren comprender texto en lenguaje natural y producir respuestas adaptadas al contexto: ordenar tareas, redactar mensajes y extraer/organizar datos de citas.
+Un punto a considerar es la disponibilidad de modelos, cuotas y modalidad gratuita de la API de Gemini.
 
 Ambientes
-ImpulsaIA contempla dos ambientes:
-Development: para desarrollar, experimentar con instrucciones (prompts), depurar y probar cambios.
-Production: para ejecutar una versión estable con mensajes de error adecuados para usuarios.
-Cada ambiente puede tener su propia clave API y configuración. El ambiente se selecciona mediante `APP_ENV`. La clave se obtiene de variables de entorno o de Streamlit Secrets.
+
+La aplicación contempla dos ambientes:
+
+1) Development: para desarrollar, experimentar con instrucciones (prompts), depurar y probar cambios.
+
+2) Production: para ejecutar una versión estable con mensajes de error adecuados para usuarios.
+
+Cada ambiente tiene su propia clave API y configuración. El ambiente se selecciona mediante `APP_ENV`. La clave se obtiene de variables de entorno y de Streamlit Secrets.
 
 Tecnologías
-Python
-Streamlit
-Google Gen AI SDK (`google-genai`)
-Gemini API
-Google Colab para desarrollo
-Streamlit Community Cloud para despliegue
+
+1) Python
+
+2) Streamlit
+
+3) Gemini API
+
+4) Google Colab para desarrollo
+
+5) Streamlit
 
 Estructura del proyecto
+
 ├── app.py
+
 ├── config.py
+
 ├── AGENTS.md
+
 ├── especificacion.md
+
 ├── README.md
+
 ├── prompts.md
+
 ├── requirements.txt
+
 ├── .gitignore
+
 └── .streamlit/
+
     ├── config.toml
+    
     └── secrets.toml.example
 
 Cómo se construyó
