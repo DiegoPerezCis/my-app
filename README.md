@@ -1,14 +1,14 @@
-ImpulsaIA
+##ImpulsaIA
 
 ImpulsaIA es un prototipo desarrollado con Python y Streamlit para ayudar a propietarios y encargados de pequeños comercios, restaurantes y cafeterías a organizar actividades cotidianas, cuenta con un asistente para ayudarlo a redactar mensajes de acuerdo a cierto modo de lenguaje y poder crear recordatorios o citas a través de google calendar y correo electronico.
 
 
-Problema
+##Problema
 
 Los pequeños negocios suelen gestionar tareas, comunicaciones y citas de manera manual. Esto puede consumir tiempo y dificultar el seguimiento de actividades importantes.
 
 
-Usuario objetivo
+##Usuario objetivo
 
 Propietarios y encargados de pequeños comercios, restaurantes y cafeterías que necesitan herramientas sencillas para organizar su operación diaria y no necesariamente tienen conocimientos técnicos.
 
