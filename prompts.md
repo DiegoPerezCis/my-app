@@ -1,20 +1,5 @@
 # Prompts utilizados durante el desarrollo de ImpulsaIA
 
-Este documento reúne cinco prompts que representan las principales
-etapas del desarrollo de ImpulsaIA: análisis inicial, definición de
-arquitectura, construcción de funcionalidades, integración de servicios
-de Google y revisión antes del despliegue.
-
-**Nota sobre su origen:** los prompts 1 y 2 se basan en las
-instrucciones documentadas en la conversación de Google Colab y en el
-trabajo de planificación del proyecto. Los prompts 3, 4 y 5 son
-reconstrucciones redactadas a partir de las solicitudes y decisiones
-tomadas durante el desarrollo en ChatGPT. Por tanto, estos últimos
-representan fielmente el trabajo realizado, pero no deben interpretarse
-como transcripciones literales de los mensajes originales.
-
-------------------------------------------------------------------------
-
 ## 1. El plan, antes de escribir código
 
 **Prompt**
@@ -85,14 +70,12 @@ y producción.
 
 **Objetivo**
 
-Pasar de una interfaz inicial a una aplicación con funcionalidades de
-inteligencia artificial y una estructura preparada para su despliegue.
+Pasar a una interfaz inicial de una aplicación y una estructura preparada para su despliegue.
 
 **Decisión y revisión**
 
 Se revisó que las funcionalidades correspondieran con las necesidades
-definidas en la especificación y que las credenciales no estuvieran
-escritas directamente en el código.
+definidas en la especificación.
 
 ------------------------------------------------------------------------
 
@@ -116,7 +99,7 @@ aplicación ofreciera una experiencia más completa.
 
 **Decisión y revisión**
 
-Se estableció que Calendar y Gmail debían operar con autorización del
+Se buscó que Calendar y Gmail debían operar con autorización del
 usuario mediante OAuth 2.0. También se delimitó que la sección de
 Usuarios y Accesos sería únicamente demostrativa, sin implementar
 autenticación ni administración real de usuarios.
@@ -140,8 +123,7 @@ autenticación ni administración real de usuarios.
 **Objetivo**
 
 Identificar problemas de experiencia de usuario, revisar las
-integraciones y reforzar la seguridad antes de considerar terminada la
-versión desplegada.
+integraciones.
 
 **Decisión y revisión**
 
@@ -156,12 +138,10 @@ resultados observados durante las pruebas.
 
 ### Actividades delegadas a la IA
 
--   Proponer la arquitectura y la organización de los archivos.
+-   Proponer la arquitectura con Chatgpt y la organización de los archivos con Gemini.
 -   Generar y modificar código Python.
 -   Construir y reorganizar la interfaz de Streamlit.
 -   Apoyar en la integración de Gemini y los servicios de Google.
--   Identificar posibles errores y proponer soluciones.
--   Apoyar en la documentación técnica del proyecto.
 
 ### Actividades revisadas manualmente
 
@@ -169,16 +149,6 @@ resultados observados durante las pruebas.
 -   Revisar las respuestas generadas por Gemini.
 -   Probar la navegación, los formularios y la legibilidad de la
     interfaz.
--   Verificar el funcionamiento de las integraciones con Google Calendar
+-   Generar la conexión de las APIs necesarias de Google Calendar y Gmail. Así como verificar el funcionamiento de las integraciones con Google Calendar
     y Gmail.
 -   Revisar el manejo de credenciales y secretos.
--   Decidir qué propuestas de la IA incorporar, modificar o descartar.
-
-## Reflexión sobre el proceso
-
-El desarrollo de ImpulsaIA permitió comprobar que utilizar inteligencia
-artificial para programar no consiste únicamente en solicitar código. Es
-necesario proporcionar contexto, establecer restricciones, definir
-instrucciones claras, revisar las respuestas y probar las soluciones. La
-participación humana sigue siendo fundamental para validar que el
-resultado responda al problema real y respete el alcance del proyecto.
