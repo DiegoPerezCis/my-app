@@ -154,11 +154,8 @@ T04      Introducir detalles de una cita      R: Se envía un correo de recordat
 
 Mejoras futuras
 
-Historial de resultados.
+1) Historial de resultados.
 
-Historial de conversaciones.
+2) Historial de conversaciones.
 
-Integración de whatsapp para la pestaña de Mensajes.
-Exportación de recordatorios y listas.
-Mejoras de accesibilidad y experiencia de usuario.
-Integraciones externas como google calendar, mail, whatsapp, etc.
+3) Integración de whatsapp para la pestaña de Mensajes.
