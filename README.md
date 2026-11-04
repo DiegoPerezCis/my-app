@@ -1,22 +1,26 @@
-##ImpulsaIA
+ImpulsaIA
 
 ImpulsaIA es un prototipo desarrollado con Python y Streamlit para ayudar a propietarios y encargados de pequeños comercios, restaurantes y cafeterías a organizar actividades cotidianas, cuenta con un asistente para ayudarlo a redactar mensajes de acuerdo a cierto modo de lenguaje y poder crear recordatorios o citas a través de google calendar y correo electronico.
 
 
-##Problema
+Problema
 
 Los pequeños negocios suelen gestionar tareas, comunicaciones y citas de manera manual. Esto puede consumir tiempo y dificultar el seguimiento de actividades importantes.
 
 
-##Usuario objetivo
+Usuario objetivo
 
 Propietarios y encargados de pequeños comercios, restaurantes y cafeterías que necesitan herramientas sencillas para organizar su operación diaria y no necesariamente tienen conocimientos técnicos.
 
 ¿Qué hace la aplicación?
+
 La aplicación contempla tres funcionalidades:
-Tareas y prioridades: recibe una descripción de actividades pendientes y utiliza Gemini para proponer una lista organizada y priorizada.
-Mensajes para clientes y proveedores: genera borradores a partir del destinatario, objetivo, contexto y tono solicitado.
-Citas y recordatorios: interpreta los detalles proporcionados y devuelve la información estructurada y un texto de recordatorio.
+
+1) Tareas y prioridades: recibe una descripción de actividades pendientes y utiliza Gemini para proponer una lista organizada y priorizada.
+   
+2) Mensajes para clientes y proveedores: genera borradores a partir del destinatario, objetivo, contexto y tono solicitado.
+   
+3) Citas y recordatorios: interpreta los detalles proporcionados y devuelve la información estructurada y un texto de recordatorio.
 
 Inteligencia artificial
 Se utilizará la API de Gemini mediante el SDK oficial `google-genai`.
