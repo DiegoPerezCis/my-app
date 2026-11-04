@@ -24,7 +24,7 @@ La aplicación contempla tres funcionalidades:
 
 Inteligencia artificial
 
-Se utiliza la API de Gemini mediante `google-genai`. Esto a debido que las tres funciones requieren comprender texto en lenguaje natural y producir respuestas adaptadas al contexto: ordenar tareas, redactar mensajes y extraer/organizar datos de citas.
+Se utiliza la API de Gemini mediante `google-genai`. Esto se debe a que las tres funciones requieren comprender texto en lenguaje natural y producir respuestas adaptadas al contexto: ordenar tareas, redactar mensajes y extraer/organizar datos de citas.
 Un punto a considerar es la disponibilidad de modelos, cuotas y modalidad gratuita de la API de Gemini.
 
 Tecnologías
@@ -67,11 +67,11 @@ El proyecto se definió a partir del problema de gestión de actividades cotidia
 
 Se desarrolló un prototipo utilizando Python y Streamlit, estructurado en cinco pestañas: Panel principal, Tareas y Prioridades, Mensajes, Citas y Recordatorios, y Usuarios y Accesos.
 
-Se utilizaron algunas APIs permitiendo integrar algunos servicios de Google para la pestaña de Citas y Recordatorios. Además se utiliza la autentificación de OAuth 2.0 para poder conceder accesos al gmail.
+Se utilizaron algunas APIs permitiendo integrar algunos servicios de Google para la pestaña de Citas y Recordatorios. Además se utiliza la autenticación de OAuth 2.0 para poder conceder accesos al gmail.
 
 Para las integraciones se utilizo el ambiente de GCP creando un proyecto independiente con el mismo nombre de la app. Habilitando las APIs desde la biblioteca, se configuro el consentimiento de OAuth (considerando un usuario externo y registrando la cuenta autorizada como usuario de prueba) y creación de las credenciales de OAuth. Se configuro la URL del despliegue de la app junto con la gestión del Client ID y Client Secret también incluidos en los secretos de Streamlit.
 
-El desarrollo se realizó utilizando Google Colab como entorno de programación y experimentación. Github para almacenar el código fuente así como las versiones del mismo. Publicando mediante Streamlit Community Cloud. 
+El desarrollo se realizó utilizando Google Colab como entorno de programación y experimentación. GitHub para almacenar el código fuente así como las versiones del mismo. Publicando mediante Streamlit Community Cloud. 
 
 Ambientes
 
@@ -144,7 +144,7 @@ Pruebas
 
 ID	Prueba	Resultado 
 
-T01      Envio de un listado de tareas      R:Gemini devuelvió tareas organizadas y prioridades comprensibles.
+T01      Envio de un listado de tareas      R:Gemini devolvió tareas organizadas y prioridades comprensibles.
 
 T02      Llenar el formulario de mensaje con destinatario, objetivo, contexto y tono en el formulario de la pestaña de Mensajes       R:Se obtiene un borrador coherente con los datos y el tono.
 
